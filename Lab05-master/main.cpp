@@ -10,6 +10,7 @@
 #include <sstream>
 #include <stdexcept>
 #include <iostream>
+#include <string>
 
 #include "LinkedList.h"
 
@@ -217,6 +218,16 @@ assert(("", xs1 == xs1_sort_));
 	}
 	catch (...) {
 		assert(("remove_at(666) should raise `out_of_range'", false));
+	}
+
+	try {
+		LinkedList to_sort { 4, 6, 1, 9, 2, 8, 3, 7, 0, 5 };
+		LinkedList sorted  { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+		assert(("BAD TEST", to_sort.size() == sorted.size()));
+		to_sort.sort();
+		assert(("sort() does not work properly", to_sort == sorted));
+	} catch (...) {
+		assert(("sort() should not rise exceptions", false));
 	}
 }
 // В этой точке будут вызваны деструкторы объектов, созданных внутри блока.
